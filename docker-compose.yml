@@ -1,0 +1,88 @@
+version: '3'
+
+networks:
+  cluster-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.10.0/24
+          gateway: 172.16.10.254
+
+services:
+  redis1:
+    image: redis:6.2
+    container_name: redis1
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "7001:7001"
+    volumes:
+      - ./conf/redis1:/usr/local/etc/redis
+      - ./data/redis1:/data
+    networks:
+      cluster-network:
+        ipv4_address: 172.16.10.1
+
+  redis2:
+    image: redis:6.2
+    container_name: redis2
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "7002:7002"
+    volumes:
+      - ./conf/redis2:/usr/local/etc/redis
+      - ./data/redis2:/data
+    networks:
+      cluster-network:
+        ipv4_address: 172.16.10.2
+
+  redis3:
+    image: redis:6.2
+    container_name: redis3
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "7003:7003"
+    volumes:
+      - ./conf/redis3:/usr/local/etc/redis
+      - ./data/redis3:/data
+    networks:
+      cluster-network:
+        ipv4_address: 172.16.10.3
+
+  redis4:
+    image: redis:6.2
+    container_name: redis4
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "7004:7004"
+    volumes:
+      - ./conf/redis4:/usr/local/etc/redis
+      - ./data/redis4:/data
+    networks:
+      cluster-network:
+        ipv4_address: 172.16.10.4
+
+  redis5:
+    image: redis:6.2
+    container_name: redis5
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "7005:7005"
+    volumes:
+      - ./conf/redis5:/usr/local/etc/redis
+      - ./data/redis5:/data
+    networks:
+      cluster-network:
+        ipv4_address: 172.16.10.5
+
+  redis6:
+    image: redis:6.2
+    container_name: redis6
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "7006:7006"
+    volumes:
+      - ./conf/redis6:/usr/local/etc/redis
+      - ./data/redis6:/data
+    networks:
+      cluster-network:
+        ipv4_address: 172.16.10.6
